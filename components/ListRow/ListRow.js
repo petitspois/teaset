@@ -77,14 +77,14 @@ export default class ListRow extends Component {
     return style;
   }
 
-  renderSeparator(type) {
+  renderSeparator(type, paddingLeft) {
     let separatorStyle = {
       backgroundColor: Theme.rowSeparatorColor,
       height: Theme.rowSeparatorLineWidth,
     };
     let indentViewStyle = {
       backgroundColor: 'rgba(0,0,0,0)',
-      paddingLeft: Theme.rowPaddingLeft,
+      paddingLeft: paddingLeft?paddingLeft:Theme.rowPaddingLeft,
     }
     switch (type) {
       case 'full': return <View style={separatorStyle} />;
@@ -215,10 +215,10 @@ export default class ListRow extends Component {
   }
 
   render() {
-    let {style, children, title, detail, titleStyle, detailStyle, detailMultiLine, icon, accessory, topSeparator, bottomSeparator, titlePlace, swipeActions, activeOpacity, onLayout, onPress, ...others} = this.props;
+    let {style, children, title, detail, titleStyle, detailStyle, detailMultiLine, icon, accessory, topSeparator, bottomSeparator, titlePlace, swipeActions, activeOpacity,paddingLeft, onLayout, onPress, ...others} = this.props;
     return (
       <View onLayout={onLayout}>
-        {this.renderSeparator(topSeparator)}
+        {this.renderSeparator(topSeparator,paddingLeft)}
         {this.renderSwipeActionView()}
         <SwipeTouchableOpacity
           {...others}
@@ -234,7 +234,7 @@ export default class ListRow extends Component {
           {this.renderContent()}
           {this.renderAccessory()}
         </SwipeTouchableOpacity>
-        {this.renderSeparator(bottomSeparator)}
+        {this.renderSeparator(bottomSeparator,paddingLeft)}
       </View>
     );
   }

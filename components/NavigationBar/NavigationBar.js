@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Platform, StatusBar, View, Text, Animated, ViewPropTypes, Dimensions} from 'react-native';
-
+import { getStatusBarHeight } from '../../react-native-iphone-x-helper'
 import Theme from 'teaset/themes/Theme';
 import NavigationTitle from './NavigationTitle';
 import NavigationButton from './NavigationButton';
@@ -56,7 +56,7 @@ export default class NavigationBar extends Component {
     this.state = {
       leftViewWidth: 0,
       rightViewWidth: 0,
-      barTop: new Animated.Value(props.hidden ? -(Theme.navBarContentHeight + Theme.statusBarHeight) : 0),
+      barTop: new Animated.Value(props.hidden ? -(Theme.navBarContentHeight + getStatusBarHeight()) : 0),
       barOpacity: new Animated.Value(props.hidden ? 0 : 1),
     };
   }
@@ -80,13 +80,14 @@ export default class NavigationBar extends Component {
       case 'android': justifyContent = 'flex-end'; break;
     }
     let {left: leftInset, right: rightInset} = Theme.screenInset;
+    let statusBarHeight = getStatusBarHeight();
     style = [{
       backgroundColor: Theme.navColor,
       position: 'absolute',
       left: 0,
       right: 0,
-      height: Theme.navBarContentHeight + (statusBarInsets ? Theme.statusBarHeight : 0),
-      paddingTop: statusBarInsets ? Theme.statusBarHeight : 0,
+      height: Theme.navBarContentHeight + (statusBarInsets ? statusBarHeight : 0),
+      paddingTop: statusBarInsets ? statusBarHeight : 0,
       paddingLeft: 4 + leftInset,
       paddingRight: 4 + rightInset,
       borderBottomWidth: Theme.navSeparatorLineWidth,
@@ -189,7 +190,7 @@ export default class NavigationBar extends Component {
     let titleViewStyle = {
       backgroundColor: 'rgba(0, 0, 0, 0)',
       position: 'absolute',
-      top: statusBarInsets ? Theme.statusBarHeight : 0,
+      top: statusBarInsets ? getStatusBarHeight() : 0,
       left: 0,
       right: 0,
       height: Theme.navBarContentHeight,
