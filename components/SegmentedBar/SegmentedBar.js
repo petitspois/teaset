@@ -13,6 +13,7 @@ export default class SegmentedBar extends Component {
 
   static propTypes = {
     ...ViewPropTypes,
+    indicatorStyle: PropTypes.object,
     justifyItem: PropTypes.oneOf(['fixed', 'scrollable']),
     indicatorType: PropTypes.oneOf(['none', 'boxWidth', 'itemWidth', 'customWidth']),
     indicatorPosition: PropTypes.oneOf(['top', 'bottom']),
@@ -34,6 +35,7 @@ export default class SegmentedBar extends Component {
     indicatorPosition: 'bottom',
     animated: true,
     autoScroll: true,
+    indicatorStyle: {},
   };
 
   static Item = SegmentedItem;
@@ -208,7 +210,7 @@ export default class SegmentedBar extends Component {
   }
 
   renderIndicator() {
-    let {indicatorLineColor, indicatorLineWidth, indicatorPositionPadding} = this.props;
+    let {indicatorLineColor, indicatorLineWidth, indicatorPositionPadding, indicatorStyle} = this.props;
     let style = {
       backgroundColor: indicatorLineColor ? indicatorLineColor : Theme.sbIndicatorLineColor,
       position: 'absolute',
@@ -222,7 +224,7 @@ export default class SegmentedBar extends Component {
       style.bottom = indicatorPositionPadding || indicatorPositionPadding === 0 ? indicatorPositionPadding : Theme.sbIndicatorPositionPadding;
     }
     return (
-      <Animated.View style={style} />
+      <Animated.View style={[style, indicatorStyle]} />
     );
   }
 
