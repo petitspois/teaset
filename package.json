@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rilyu/teaset.git"
+    "url": "git+https://github.com/petitspois/teaset.git"
   },
   "keywords": [
     "teaset",
@@ -18,12 +18,12 @@
     "library",
     "framework"
   ],
-  "author": "rilyu",
+  "author": "petitspois",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rilyu/teaset/issues"
+    "url": "https://github.com/petitspois/teaset/issues"
   },
-  "homepage": "https://github.com/rilyu/teaset#readme",
+  "homepage": "https://github.com/petitspois/teaset#readme",
   "dependencies": {
     "prop-types": "^15.7.2",
     "react-native-legacy-components": "^0.1.3"
